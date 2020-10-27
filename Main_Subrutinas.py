@@ -16,27 +16,34 @@ contador = 0        #CONTADOR DE VUELTAS        (DENOMINADOR)
 
 #SUBRUTINA 1 = SOLUCIÓN EJERCICIO 3
 def MediaTotal (suma, n , contador):        #PARÁMETROS SUMA, N Y CONTADOR
-    if n<0:     #SI N ES NEGATIVO (FIN DE BUCLE)
-        return suma/contador        #IMPRIMIR MEDIA
+    if n>0:     #SI N ES NEGATIVO (FIN DE BUCLE)
+        suma = suma + n  # ACTUALIZAR SUMATORIO
+        contador = contador + 1  # ACTUALIZAR CONTADOR DE VUELTAS
     else:       #SI NO (EVALUANDO SUMA)
-        suma = suma + n     #ACTUALIZAR SUMATORIO
-        contador = contador + 1     #ACTUALIZAR CONTADOR DE VUELTAS
-
+        contador = Check(contador)
+        return suma / contador  # IMPRIMIR MEDIA
 
 #SUBRUTINAS 2 Y 3 = SOLUCION EJERCICIO 4
 def MediaPares (suma, n , contador):        #PARÁMETROS SUMA, N Y CONTADOR
     if n<0:        #SI N ES NEGATIVO (FIN DE BUCLE)
-        return suma/contador        #IMPRIMIR MEDIA DE PARES
+        contador = Check(contador)
+        return suma/contador     #IMPRIMIR MEDIA DE PARES
     else:       #SI NO (EVALUANDO SUMA)
         suma = suma + n     #ACTUALIZAR SUMATORIO PARES
         contador = contador + 1     #ACTUALIZAR CONTADOR DE VUELTAS PARES
 
 def MediaImpares (suma, n, contador):       #PARÁMETROS SUMA, N Y CONTADOR
     if n<0:     #SI N ES NEGATIVO (FIN DE BUCLE)
-        return suma/contador        #IMPRIMIR MEDIA DE IMPARES
+        contador = Check(contador)
+        return suma/contador       #IMPRIMIR MEDIA DE IMPARES
     else:       #SI NO (EVALUANDO SUMA)
         suma = suma + n     #ACTUALIZAR SUMATORIO DE IMPARES
         contador = contador + 1     #ACTUALIZAR CONTADOR DE VUELTAS IMPARES
+
+def Check (contador):
+    if contador == 0:
+        coontador = 1
+    return contador
 
 
 n = int(input ("Introduzca el primer valor: "))     #SOLICITA PRIMER VALOR
@@ -44,6 +51,7 @@ if n < 0:       #SI EL PRIMER VALOR ES NEGATIVO
     print ("El primer valor ya es negativo, no existe media positiva.")     #OUTPUT
 else:       #SI NO ==> PROGRAMA PRINCIPAL
     while n>=0:     #MIENTRAS N SEA POSITIVO
+        n = int (input("Introduzca el siguiente valor: "))
         MediaTotal(suma, n, contador)          #EN CADA VUELTA SE EVALÚA EL VALOR N     (LLAMAMOS SUBRUTINA 1)
         if n%2==0:      #EN CADA VUELTA EN LA QUE N SEA PAR
             MediaPares(suma,n,contador)     #SE EVALÚA EL VALOR PAR                     (LLAMAMOS SUBRUTINA 2)
